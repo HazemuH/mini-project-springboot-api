@@ -1,7 +1,7 @@
 package com.hazemuh.baseTemplate.service;
-import com.hazemuh.baseTemplate.entity.TdTesting;
+import com.hazemuh.baseTemplate.entity.Transactions;
 import com.hazemuh.baseTemplate.repository.TestingClassRepository;
-import com.hazemuh.baseTemplate.repository.addDataRepository;
+import com.hazemuh.baseTemplate.repository.transactionsRepository;
 import com.hazemuh.baseTemplate.utility.MessageModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class ApplicationService {
+public class TransactionsService {
    @Autowired
    private TestingClassRepository testingClassRepository;
    @Autowired
-   private addDataRepository addDataRepository;
+   private transactionsRepository transactionsRepository;
 
 
     public ResponseEntity getDataTesting() {
@@ -24,7 +24,7 @@ public class ApplicationService {
         MessageModel msg = new MessageModel();
         try {
 
-            List<TdTesting> data= addDataRepository.getDataTesting();
+            List<Transactions> data= transactionsRepository.getDataTesting();
 
             if (data.isEmpty()) {
                 msg.setStatus(true);
@@ -50,11 +50,9 @@ public class ApplicationService {
         MessageModel msg = new MessageModel();
         try {
 
-            TdTesting data = new TdTesting();
+            Transactions data = new Transactions();
 
-            data.setNama(nama);
-            data.setUmur(umur);
-            addDataRepository.save(data);
+            transactionsRepository.save(data);
 
             msg.setStatus(true);
             msg.setMessage("Berhasil Insert data");
