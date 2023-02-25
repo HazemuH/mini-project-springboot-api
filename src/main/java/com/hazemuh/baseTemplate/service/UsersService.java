@@ -96,5 +96,55 @@ public class UsersService {
         }
     }
 
+    public ResponseEntity deleteUserbyId(UUID id) {
+        Map<String, Object> result = new HashMap<>();
+        MessageModel msg = new MessageModel();
+        try {
+
+            usersRepository.deleteById(id);
+
+            msg.setStatus(true);
+            msg.setMessage("Deleted!");
+            result.put("usersId : ",id);
+            msg.setData(result);
+            return ResponseEntity.ok().body(msg);
+
+
+        }catch (Exception e){
+            msg.setStatus(false);
+            msg.setMessage(e.getMessage());
+            return ResponseEntity.ok().body(msg);
+        }
+    }
+
+    public ResponseEntity updateUsersbyId(Users users) {
+        Map<String, Object> result = new HashMap<>();
+        MessageModel msg = new MessageModel();
+        try {
+
+            Users data = usersRepository.getUsersbyId(users.getUsersId());
+
+            users.setName((users.getName() == null) ? data.getName() : users.getName());
+            users.setEmail((users.getEmail() == null) ? data.getEmail() : users.getEmail());
+            users.setPassword((users.getPassword() == null) ? data.getPassword() : users.getPassword());
+            users.setCreatedAt(data.getCreatedAt());
+            users.setUpdatedAt(new Date());
+
+            usersRepository.save(users);
+
+            msg.setStatus(true);
+            msg.setMessage("Updated!");
+            result.put("usersId : ",users.getUsersId());
+            msg.setData(result);
+            return ResponseEntity.ok().body(msg);
+
+
+        }catch (Exception e){
+            msg.setStatus(false);
+            msg.setMessage(e.getMessage());
+            return ResponseEntity.ok().body(msg);
+        }
+    }
+
 
 }

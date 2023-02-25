@@ -34,6 +34,18 @@ public class usersController {
         return responseEntity;
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity deleteUserById(@PathVariable UUID id) {
+        ResponseEntity responseEntity = usersService.deleteUserbyId(id);
+        return responseEntity;
+    }
+
+    @PutMapping("/updateUsers")
+    public ResponseEntity updateById(@RequestBody Users users) {
+        ResponseEntity responseEntity = usersService.updateUsersbyId(users);
+        return responseEntity;
+    }
+
 
 }
 
