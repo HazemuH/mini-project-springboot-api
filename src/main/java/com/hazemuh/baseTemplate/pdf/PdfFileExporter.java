@@ -38,7 +38,6 @@ public class PdfFileExporter {
     }
 
     @Bean
-    @Primary
     private TemplateEngine createTemplateEngine() {
         ClassLoaderTemplateResolver pdfTemplateResolver = new ClassLoaderTemplateResolver();
         pdfTemplateResolver.setPrefix("templates/");
