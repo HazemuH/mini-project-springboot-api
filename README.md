@@ -1,2 +1,2 @@
 # mini-project-springboot-api
-Here's my mini project that can do a insert, delete, and give a report in byte pdf
+Here's my mini project that can insert, delete, and generate a PDF report in a byte array format.
