@@ -43,7 +43,7 @@ public class ReportClassRepository {
                 String created_at = String.valueOf(obj[3]);
                 String descriptions = String.valueOf(obj[4]);
                 String amount = String.valueOf(obj[5]);
-                String type = String.valueOf(obj[0]);
+                String type = String.valueOf(obj[6]);
 
                 browse.setTransactionId(transactions_id);
                 browse.setDate(created_at);

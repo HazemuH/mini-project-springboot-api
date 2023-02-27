@@ -38,7 +38,7 @@ public class DataService {
         ReportDto data = new ReportDto();
         data.setNama(hasil.getName());
         data.setUsersId(usersId);
-        data.setPeriode(tanggalAwal+" - "+tanggalAkhir);
+        data.setPeriode(tanggalAwal+" s/d "+tanggalAkhir);
         data.setReportDetailDtos(detail);
         data.setTotal(total);
 

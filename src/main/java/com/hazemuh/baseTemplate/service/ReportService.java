@@ -89,6 +89,7 @@ public class ReportService {
     public static Map<String, Object> createData(ReportDto reportDto){
         Map<String, Object> data = new HashMap<>();
         data.put("data", reportDto);
+        data.put("detail", reportDto.getReportDetailDtos());
         return data;
     }
 

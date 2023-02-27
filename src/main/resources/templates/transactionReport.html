@@ -37,9 +37,9 @@
 </head>
 <body>
     <h1>Laporan Transaksi</h1>
-    <h4>Nama:</h4>
-    <h4>UserId :</h4>
-    <h4>Periode :</h4>
+    <h4>Nama: <span th:text="${data.nama}?:'-'"></span> </h4>
+    <h4>UserId : <span th:text="${data.usersId}?:'-'"></span></h4>
+    <h4>Periode : <span th:text="${data.periode}?:'-'"></span></h4>
     <table>
         <thead>
         <tr>
@@ -50,27 +50,15 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>2022-01-01</td>
-            <td>Deposit</td>
-            <td>Paycheck</td>
-            <td class="positive-amount">$1,000.00</td>
-        </tr>
-        <tr>
-            <td>2022-01-02</td>
-            <td>Withdrawal</td>
-            <td>Groceries</td>
-            <td class="negative-amount">-$100.00</td>
-        </tr>
-        <tr>
-            <td>2022-01-05</td>
-            <td>Transfer</td>
-            <td>Savings</td>
-            <td class="negative-amount">-$500.00</td>
+        <tr th:each="item, iterStat: ${detail}">
+            <td th:text="${item.date}?:'-'">2022-01-01</td>
+            <td th:text="${item.type}?:'-'"></td>
+            <td th:text="${item.description}?:'-'"></td>
+            <td class="positive-amount" th:text="${item.amount}?:'-'"></td>
         </tr>
         <tr class="total-row">
             <td colspan="3">Total</td>
-            <td class="negative-amount">-$600.00</td>
+            <td class="negative-amount" th:text="${data.total}?:'-'"></td>
         </tr>
         </tbody>
     </table>
