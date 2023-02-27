@@ -39,6 +39,12 @@ public class Users implements Serializable {
     @Column(name = "password", nullable = true)
     private String password;
 
+    @Column(name = "address", nullable = true)
+    private String address;
+
+    @Column(name = "telp_no", nullable = true)
+    private String telpNo;
+
     //    created_at timestamp NULL,
     @Column(name = "created_at", nullable = true)
     private Date createdAt;

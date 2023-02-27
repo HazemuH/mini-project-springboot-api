@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Transaction Report</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+      }
+      h1 {
+        text-align: center;
+        margin-top: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th, td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      .total-row {
+        font-weight: bold;
+      }
+      .positive-amount {
+        color: green;
+      }
+      .negative-amount {
+        color: red;
+      }
+    </style>
+</head>
+<body>
+    <h1>Laporan Transaksi</h1>
+    <h4>Nama:</h4>
+    <h4>UserId :</h4>
+    <h4>Periode :</h4>
+    <table>
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>2022-01-01</td>
+            <td>Deposit</td>
+            <td>Paycheck</td>
+            <td class="positive-amount">$1,000.00</td>
+        </tr>
+        <tr>
+            <td>2022-01-02</td>
+            <td>Withdrawal</td>
+            <td>Groceries</td>
+            <td class="negative-amount">-$100.00</td>
+        </tr>
+        <tr>
+            <td>2022-01-05</td>
+            <td>Transfer</td>
+            <td>Savings</td>
+            <td class="negative-amount">-$500.00</td>
+        </tr>
+        <tr class="total-row">
+            <td colspan="3">Total</td>
+            <td class="negative-amount">-$600.00</td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,22 +1,19 @@
 package com.hazemuh.baseTemplate.service;
-import com.hazemuh.baseTemplate.entity.Transactions;
 import com.hazemuh.baseTemplate.entity.Users;
-import com.hazemuh.baseTemplate.repository.TestingClassRepository;
+import com.hazemuh.baseTemplate.repository.ReportClassRepository;
 import com.hazemuh.baseTemplate.repository.transactionsRepository;
 import com.hazemuh.baseTemplate.repository.usersRepository;
 import com.hazemuh.baseTemplate.utility.MessageModel;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.util.*;
 
 @Service
 public class UsersService {
    @Autowired
-   private TestingClassRepository testingClassRepository;
+   private ReportClassRepository reportClassRepository;
    @Autowired
    private transactionsRepository transactionsRepository;
    @Autowired
