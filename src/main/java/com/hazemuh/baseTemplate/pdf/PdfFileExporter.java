@@ -1,7 +1,10 @@
 package com.hazemuh.baseTemplate.pdf;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
+import org.thymeleaf.spring6.SpringTemplateEngine;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
@@ -34,6 +37,8 @@ public class PdfFileExporter {
         return htmlContent;
     }
 
+    @Bean
+    @Primary
     private TemplateEngine createTemplateEngine() {
         ClassLoaderTemplateResolver pdfTemplateResolver = new ClassLoaderTemplateResolver();
         pdfTemplateResolver.setPrefix("templates/");
@@ -42,7 +47,7 @@ public class PdfFileExporter {
         pdfTemplateResolver.setCharacterEncoding("UTF-8");
         pdfTemplateResolver.setOrder(1);
 
-        TemplateEngine templateEngine = new TemplateEngine();
+        TemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(pdfTemplateResolver);
         return templateEngine;
     }

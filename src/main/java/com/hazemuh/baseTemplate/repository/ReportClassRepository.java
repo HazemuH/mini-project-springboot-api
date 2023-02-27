@@ -19,15 +19,15 @@ public class ReportClassRepository {
     public List<ReportDetailDto> getDataReport(String usersId, String tanggalAwal, String tanggalAkhir) {
         {
 
-            Query query = entityManager.createNativeQuery("SELECT transaction_id,  project.users.\"name\" as name, " +
-                    "project.users.users_id, project.transactions.created_at , description , amount, " +
-                    "transaction_type as type " +
-                    "FROM project.transactions " +
-                    "INNER JOIN project.users ON project.transactions.users_id  = project.users.users_id " +
-                    "WHERE project.transactions.users_id = '"+usersId+"' " +
-                    "AND project.transactions.created_at  >= '"+tanggalAwal+"' " +
-                    "AND project.transactions.created_at  <= '"+tanggalAkhir+"' " +
-                    "ORDER BY project.transactions.created_at DESC;");
+            Query query = entityManager.createNativeQuery("SELECT transaction_id,  project.users.\"name\" as name, project.users.users_id, \n" +
+                    "project.transactions.created_at , description , amount, transaction_type as type \n" +
+                    "FROM project.transactions \n" +
+                    "INNER JOIN project.users \n" +
+                    "ON project.transactions.users_id  = project.users.users_id \n" +
+                    "WHERE project.transactions.users_id = '"+usersId+"' \n" +
+                    "AND project.transactions.created_at  >= '"+tanggalAwal+"' \n" +
+                    "AND project.transactions.created_at  <= '"+tanggalAkhir+"' \n" +
+                    "ORDER BY project.transactions.created_at DESC");
 
             List hasil = query.getResultList();
             List<ReportDetailDto> result = new ArrayList<>();

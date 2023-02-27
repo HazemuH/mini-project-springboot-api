@@ -1,8 +1,5 @@
 package com.hazemuh.baseTemplate.service;
-import com.hazemuh.baseTemplate.dto.ReportDetailDto;
 import com.hazemuh.baseTemplate.dto.ReportDto;
-import com.hazemuh.baseTemplate.entity.Transactions;
-import com.hazemuh.baseTemplate.entity.Users;
 import com.hazemuh.baseTemplate.pdf.PdfFileExporter;
 import com.hazemuh.baseTemplate.repository.ReportClassRepository;
 import com.hazemuh.baseTemplate.repository.transactionsRepository;
@@ -11,7 +8,6 @@ import com.hazemuh.baseTemplate.utility.MessageModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.expression.Strings;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -27,6 +23,8 @@ public class ReportService {
    private transactionsRepository transactionsRepository;
    @Autowired
    private usersRepository usersRepository;
+   @Autowired
+   private DataService dataService;
 
 
     public ResponseEntity cetakReport(String usersId, String tanggalAwal, String tanggalAkhir){
@@ -36,8 +34,9 @@ public class ReportService {
 
         try{
 
+            ReportDto hasildata = dataService.DataReportDto(usersId,tanggalAwal, tanggalAkhir);
+
             PdfFileExporter pdfFileExporter = new PdfFileExporter();
-            ReportDto hasildata = dataReportDto(usersId,tanggalAwal, tanggalAkhir);
 
             Map<String, Object> data = createData(hasildata);
 
@@ -85,27 +84,6 @@ public class ReportService {
             e.printStackTrace();
         }
 
-    }
-
-    public ReportDto dataReportDto(String usersId, String tanggalAwal, String tanggalAkhir) {
-        Map<String, Object> result = new HashMap<>();
-        MessageModel msg = new MessageModel();
-
-        Long total =0L;
-        Users hasil = usersRepository.getUsersbyId(UUID.fromString(usersId));
-        List<ReportDetailDto> detail = reportClassRepository.getDataReport(usersId,tanggalAwal,tanggalAkhir);
-        for(ReportDetailDto maps:detail){
-            total=total+ maps.getAmount();
-        }
-
-        ReportDto data = new ReportDto();
-        data.setNama(hasil.getName());
-        data.setUsersId(usersId);
-        data.setPeriode(tanggalAwal+" - "+tanggalAkhir);
-        data.setReportDetailDtos(detail);
-        data.setTotal(total);
-
-        return data;
     }
 
     public static Map<String, Object> createData(ReportDto reportDto){
